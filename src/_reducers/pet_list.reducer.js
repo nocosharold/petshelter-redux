@@ -16,8 +16,12 @@ export const pet_list = createSlice({
     name: "pet_list",
     initialState,
     reducers: {
+        fetchSelectedPets: (state, action) => {
+            state.pets = state.pets[action.payload];
+        },
+
         addPet: (state, action) => {
-            const pet = {
+            const pet = {...state.pets,
                 _id: uuidv4(),
                 pet_name: action.payload.pet_name,
                 pet_type: action.payload.pet_type,
@@ -28,5 +32,5 @@ export const pet_list = createSlice({
     },
 });
 
-export const { addPet } = pet_list.actions;
+export const { fetchSelectedPets, addPet } = pet_list.actions;
 export default pet_list.reducer;

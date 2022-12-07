@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 /* PLUGINS */
 
 /* COMPONENTS */
-import PetList from '../../user/dashboard/components/petList';
+import PetList from '../../user/dashboard/petList';
 
 /* STYLES */
 

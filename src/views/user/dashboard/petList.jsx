@@ -4,8 +4,12 @@ import React, { Component } from 'react';
 /* COMPONENTS */
 import { ListGroup  } from 'react-bootstrap';
 
+import { connect } from 'react-redux';
+import { fetchPets } from '../../../_actions/pet_list.action'
+
 class PetList extends Component {
-    render() { 
+    
+    render() {
         return (
             <>
                 <ListGroup>
@@ -19,5 +23,13 @@ class PetList extends Component {
         );
     }
 }
- 
-export default PetList;
+
+const mapStateToProps = state => ({
+    pets: state.pets
+});
+
+const mapDispatchToProps = (dispatch, pet) => ({ 
+    fetchPets: () => dispatch(fetchPets(pet))
+});
+
+export default connect( mapStateToProps, mapDispatchToProps)(PetList);
