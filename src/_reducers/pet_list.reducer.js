@@ -32,5 +32,5 @@ export const pet_list = createSlice({
     },
 });
 
-export const { fetchSelectedPets, addPet } = pet_list.actions;
+export const { fetchSelectedPets } = pet_list.actions;
 export default pet_list.reducer;

@@ -2,23 +2,36 @@
 import React, { Component } from 'react';
 
 /* COMPONENTS */
-import { ListGroup  } from 'react-bootstrap';
+import { Table, Button  } from 'react-bootstrap';
 
+/* REDUX */
 import { connect } from 'react-redux';
+
+/* ACTIONS */
 import { fetchPets } from '../../../_actions/pet_list.action'
+
+/* STYLES */
+import "./petList.scss";
 
 class PetList extends Component {
     
     render() {
+        const { pets } = this.props;
         return (
             <>
-                <ListGroup>
-                    <ListGroup.Item>Cras justo odio</ListGroup.Item>
-                    <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                    <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-                    <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-                    <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-                </ListGroup>
+                <Table>
+                    <tbody>
+                        {pets['pets'].map(pet => 
+                        <tr key={pet._id}> 
+                            <td>{pet.pet_name}</td>
+                            <td>{pet.pet_type}</td>
+                            <td>
+                                <Button className="btn_actions">Details</Button>
+                                <Button className="btn_actions btn_edit">Edit</Button>
+                            </td>
+                        </tr>)}
+                    </tbody>
+                </Table>
             </>
         );
     }
@@ -32,4 +45,7 @@ const mapDispatchToProps = (dispatch, pet) => ({
     fetchPets: () => dispatch(fetchPets(pet))
 });
 
-export default connect( mapStateToProps, mapDispatchToProps)(PetList);
+export default connect( 
+    mapStateToProps, 
+    mapDispatchToProps
+)(PetList);
