@@ -1,5 +1,6 @@
-export const fetchPets = () => {
+export const addPet = (pet_details) => {
     return {
-        type: "FETCH_PETS"
+        type: "ADD_PETS",
+        payload: pet_details
     }
 }
