@@ -19,12 +19,14 @@ class UserLayout extends Component {
             display_add_modal: false,
             display_edit_modal: false,
             display_details_modal: false,
-            pet_data: {
-                id: "",
+            selected_pet: {
+                id: 0,
                 pet_name: "",
                 pet_type: "",
                 pet_likes: 0
-            }
+            },
+            selected_pet_name: "",
+            selected_pet_type: ""
         }
     }
 
@@ -36,24 +38,35 @@ class UserLayout extends Component {
         this.setState({ display_add_modal: false });
     }
 
-    handleShowEditModal = () => {
-        this.setState({ display_edit_modal: true });
+    handleShowEditModal = (pet) => {
+        this.setState({ display_edit_modal: true, selected_pet: pet, selected_pet_name: pet.pet_name, selected_pet_type: pet.pet_type });
     }
 
     handleHideEditModal = () => {
         this.setState({ display_edit_modal: false });
     }
     
-    handleShowDetailsModal = () => {
-        this.setState({ display_details_modal: true });
+    handleShowDetailsModal = (pet) => {
+        this.setState({ display_details_modal: true, selected_pet: pet });
     }
 
     handleHideDetailsModal = () => {
         this.setState({ display_details_modal: false });
     }
 
+    handleChangePetType = (pet) => {
+        this.setState({  
+            // selected_pet_type: pet.target.value,
+            selected_pet: { 
+                id: pet.id,
+                pet_name: pet.pet_name,
+                pet_type: pet.target.value,
+            }
+        })
+    }
+
     render() { 
-        const { display_add_modal, display_edit_modal, display_details_modal } = this.state
+        const { display_add_modal, display_edit_modal, display_details_modal, selected_pet, selected_pet_type } = this.state
         return (
             <>
                 <NavBar 
@@ -69,10 +82,14 @@ class UserLayout extends Component {
                 />
                 <EditPetModal 
                     showEditPetModalState={ display_edit_modal }
+                    selectedPet={ selected_pet }
+                    onChangePetType={this.handleChangePetType}
                     onHandleHideEditModal={this.handleHideEditModal}
                 />
                 <DetailsPetModal 
                     showDetailsPetModalState={ display_details_modal }
+                    selectedPet={ selected_pet }
+                    selectedPetType={ selected_pet_type }
                     onHandleHideDetailsModal={this.handleHideDetailsModal}
                 />
             </>

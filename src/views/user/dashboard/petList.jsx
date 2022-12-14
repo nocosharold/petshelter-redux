@@ -20,12 +20,12 @@ class PetList extends Component {
                 <Table>
                     <tbody>
                         {pets['pets'].map(pet => 
-                        <tr key={pet._id}> 
+                        <tr key={pet.id}> 
                             <td>{pet.pet_name}</td>
                             <td>{pet.pet_type}</td>
                             <td>
-                                <Button className="btn_actions" onClick={() => { handleShowDetailsModal() }}>Details</Button>
-                                <Button className="btn_actions btn_edit" onClick={() => { handleShowEditModal() }}>Edit</Button>
+                                <Button className="btn_actions" onClick={() => { handleShowDetailsModal(pet) }}>Details</Button>
+                                <Button className="btn_actions btn_edit" onClick={() => { handleShowEditModal(pet) }}>Edit</Button>
                             </td>
                         </tr>)}
                     </tbody>

@@ -2,21 +2,36 @@
 import React, { Component } from 'react';
 
 /* COMPONENTS */
-import { Modal, Button } from 'react-bootstrap'
-
+import { Form, Modal, Button } from 'react-bootstrap'
+import { petListAction } from "../../../_actions/pet_list.action"
+import { bindActionCreators } from 'redux';
+/* REDUX */
+import { connect } from 'react-redux';
 
 class EditPetModal extends Component {
-    
     render() { 
-        const { showEditPetModalState, onHandleHideEditModal} = this.props;
+        const { showEditPetModalState, onHandleHideEditModal, selectedPet, onChangePetType, selectedPetType } = this.props;
         return (
             <Modal show={ showEditPetModalState } animation={false}>
                 <Modal.Header closeButton onClick={() => { onHandleHideEditModal()} }>
-                <Modal.Title>EDIT Modal heading</Modal.Title>
+                <Modal.Title>EDIT Details: { selectedPet.pet_name }</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Pet Type</Form.Label>
+                            <Form.Select onChange={(event) => { onChangePetType(event)}} value={selectedPetType}>
+                                <option>Pig</option>
+                                <option>Cat</option>
+                                <option>Dog</option>
+                                <option>Duck</option>
+                                <option>Penguin</option>
+                            </Form.Select>
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
                 <Modal.Footer>
-                <Button variant="primary">
+                <Button variant="primary" onClick={ () => { this.props.onHandleEdiPet(selectedPet); onHandleHideEditModal(); }}>
                     Save Changes
                 </Button>
                 </Modal.Footer>
@@ -25,4 +40,10 @@ class EditPetModal extends Component {
     }
 }
 
-export default EditPetModal;
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        onHandleEdiPet: petListAction.editPet,
+    }, dispatch);
+}
+
+export default connect( null, mapDispatchToProps)(EditPetModal);
