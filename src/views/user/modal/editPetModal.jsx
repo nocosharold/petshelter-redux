@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 class EditPetModal extends Component {
     render() { 
-        const { showEditPetModalState, onHandleHideEditModal, selectedPet, onChangePetType, selectedPetType } = this.props;
+        const { showEditPetModalState, onHandleHideEditModal, selectedPet, onChangePetType } = this.props;
         return (
             <Modal show={ showEditPetModalState } animation={false}>
                 <Modal.Header closeButton onClick={() => { onHandleHideEditModal()} }>
@@ -20,7 +20,7 @@ class EditPetModal extends Component {
                     <Form>
                         <Form.Group className="mb-3">
                             <Form.Label>Pet Type</Form.Label>
-                            <Form.Select onChange={(event) => { onChangePetType(event)}} value={selectedPetType}>
+                            <Form.Select onChange={(event) => { onChangePetType(event)}} value={selectedPet.pet_type}>
                                 <option>Pig</option>
                                 <option>Cat</option>
                                 <option>Dog</option>

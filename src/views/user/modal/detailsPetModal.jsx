@@ -11,21 +11,22 @@ import { connect } from 'react-redux';
 class DetailsPetModal extends Component {
     
     render() { 
-        const { showDetailsPetModalState, onHandleHideDetailsModal, selectedPet } = this.props;
+        const { showDetailsPetModalState, onHandleHideDetailsModal, selectedPet, onLikePet } = this.props;
+        console.log(selectedPet)
         return (
-            <Modal show={showDetailsPetModalState} animation={false}>
+            <Modal show={ showDetailsPetModalState } animation={false}>
                 <Modal.Header closeButton onClick={() => {onHandleHideDetailsModal()}}>
                 <Modal.Title>DETAILS about: {selectedPet.pet_name}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>Pet Type: <span>Cat</span></p>
+                    <p>Pet Type: <span>{selectedPet.pet_type}</span></p>
                 </Modal.Body>
                 <Modal.Footer>
-                <p>{ selectedPet.pet_likes } Likes</p>
-                <Button variant="primary">
-                    Like { selectedPet.pet_name }
-                </Button>
-                <Button variant="primary" onClick={ () => { this.props.onHandleDeletePet(selectedPet); onHandleHideDetailsModal(); }}>
+                    <p>{ selectedPet.pet_likes } Likes</p>
+                    <Button variant="primary" disabled={selectedPet.pet_likes} onClick={()=>{ onLikePet()}}>
+                        Like { selectedPet.pet_name }
+                    </Button>
+                <Button variant="primary" onClick={() => { this.props.onDeletePet(selectedPet); onHandleHideDetailsModal(); }}>
                     Adopt { selectedPet.pet_name }
                 </Button>
                 </Modal.Footer>
@@ -36,7 +37,7 @@ class DetailsPetModal extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        onHandleDeletePet: petListAction.deletePet,
+        onDeletePet: petListAction.deletePet,
     }, dispatch);
 }
 

@@ -25,8 +25,6 @@ class UserLayout extends Component {
                 pet_type: "",
                 pet_likes: 0
             },
-            selected_pet_name: "",
-            selected_pet_type: ""
         }
     }
 
@@ -39,7 +37,21 @@ class UserLayout extends Component {
     }
 
     handleShowEditModal = (pet) => {
-        this.setState({ display_edit_modal: true, selected_pet: pet, selected_pet_name: pet.pet_name, selected_pet_type: pet.pet_type });
+        this.setState({ 
+            display_edit_modal: true, 
+            selected_pet: {
+                id: pet.id,
+                pet_name: pet.pet_name,
+                pet_type: pet.pet_type,
+                pet_likes: 0
+            }, 
+            edited_pet: {
+                id: pet.id,
+                pet_name: pet.pet_name,
+                pet_type: pet.pet_type,
+                pet_likes: 0
+            }
+        });
     }
 
     handleHideEditModal = () => {
@@ -55,12 +67,21 @@ class UserLayout extends Component {
     }
 
     handleChangePetType = (pet) => {
-        this.setState({  
-            // selected_pet_type: pet.target.value,
-            selected_pet: { 
-                id: pet.id,
-                pet_name: pet.pet_name,
-                pet_type: pet.target.value,
+        const { selected_pet } = this.state;
+
+        this.setState({  selected_pet: {
+                ...selected_pet,
+                pet_type: pet.target.value
+            }
+        })
+    }
+
+    handleLikePet = () =>{
+        const { selected_pet } = this.state;
+        this.setState({
+            selected_pet: {
+                ...selected_pet,
+                pet_likes: selected_pet.pet_likes + 1
             }
         })
     }
@@ -70,15 +91,15 @@ class UserLayout extends Component {
         return (
             <>
                 <NavBar 
-                    handleShowAddModal={this.handleShowAddModal}
+                    onShowAddModal={this.handleShowAddModal}
                 />
                 <PetList 
-                    handleShowEditModal={this.handleShowEditModal}
-                    handleShowDetailsModal={this.handleShowDetailsModal}
+                    onShowEditModal={this.handleShowEditModal}
+                    onShowDetailsModal={this.handleShowDetailsModal}
                 />
                 <AddPetModal 
                     showAddPetModalState={ display_add_modal }
-                    onHandleHideAddModal={this.handleHideAddModal}
+                    onHideAddModal={this.handleHideAddModal}
                 />
                 <EditPetModal 
                     showEditPetModalState={ display_edit_modal }
@@ -91,6 +112,7 @@ class UserLayout extends Component {
                     selectedPet={ selected_pet }
                     selectedPetType={ selected_pet_type }
                     onHandleHideDetailsModal={this.handleHideDetailsModal}
+                    onLikePet={this.handleLikePet}
                 />
             </>
         );

@@ -19,10 +19,10 @@ class AddPetModal extends Component {
     }
     
     render() { 
-        const { showAddPetModalState, onHandleHideAddModal } = this.props;
+        const { showAddPetModalState, onHideAddModal } = this.props;
         return (
             <Modal show={showAddPetModalState} animation={false}>
-                <Modal.Header closeButton onClick={() => {onHandleHideAddModal()}}>
+                <Modal.Header closeButton onClick={() => {onHideAddModal()}}>
                 <Modal.Title>ADD Modal heading</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -41,7 +41,7 @@ class AddPetModal extends Component {
                                 <option>Penguin</option>
                             </Form.Select>
                         </Form.Group>
-                        <Button variant="primary" onClick={ () => { this.props.onHandleAddPet(this.state); onHandleHideAddModal(); }} >
+                        <Button variant="primary" onClick={ () => { this.props.onAddPet(this.state); onHideAddModal(); }} >
                             Submit
                         </Button>
                     </Form>
@@ -53,7 +53,7 @@ class AddPetModal extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        onHandleAddPet: petListAction.addPet,
+        onAddPet: petListAction.addPet,
     }, dispatch);
 }
 

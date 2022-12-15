@@ -23,14 +23,13 @@ export const pet_list = createSlice({
             state.pets = state.pets.filter((pet) => pet.id !== action.payload.id)
         },
         editPet: (state, action) => {
-            console.log("reducer", action.payload)
-            // state.pets = state.pets.map((pet) => {
-            //     if(pet.id === action.payload.id){
-            //         pet.pet_type = action.payload.pet_type
-            //     }
-            //     return pet
-            // });
-        },
+            state.pets = state.pets.map((pet) => {
+                if(pet.id === action.payload.id){
+                    pet.pet_type = action.payload.pet_type
+                }
+                return pet
+            });
+        }
     },
 });
 

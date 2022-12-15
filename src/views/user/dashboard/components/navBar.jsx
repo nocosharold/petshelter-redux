@@ -11,7 +11,7 @@ import './navBar.scss';
 
 class NavBar extends Component {
     render() { 
-        const { handleShowAddModal } = this.props;
+        const { onShowAddModal } = this.props;
         return (
             <>
                 <Navbar>
@@ -21,7 +21,7 @@ class NavBar extends Component {
                         <Nav.Link href="#home">Home</Nav.Link>
                         <Nav.Link href="#services">Services</Nav.Link>
                         <Nav.Link href="#events">Events</Nav.Link>
-                        <Button className="add_pet_btn" onClick={() => { handleShowAddModal() }}>Add Pet</Button>
+                        <Button className="add_pet_btn" onClick={() => { onShowAddModal() }}>Add Pet</Button>
                     </Nav>
                     </Container>
                 </Navbar>
