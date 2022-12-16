@@ -1,13 +1,11 @@
 /* REACT */
 import React, { Component } from 'react';
-import { Table, Button  } from 'react-bootstrap';
 
-/* COMPONENTS */
+/* PLUGINS */
+import { Table, Button  } from 'react-bootstrap';
 
 /* REDUX */
 import { connect } from 'react-redux';
-
-/* ACTIONS */
 
 /* STYLES */
 import "./petList.scss";
@@ -16,7 +14,7 @@ class PetList extends Component {
     render() {
         const { pets, onShowDetailsModal, onShowEditModal } = this.props;
         return (
-            <>
+            <React.Fragment>
                 <Table>
                     <tbody>
                         {pets['pets'].map(pet => 
@@ -24,13 +22,13 @@ class PetList extends Component {
                             <td>{pet.pet_name}</td>
                             <td>{pet.pet_type}</td>
                             <td>
-                                <Button className="btn_actions" onClick={() => { onShowDetailsModal(pet) }}>Details</Button>
-                                <Button className="btn_actions btn_edit" onClick={() => { onShowEditModal(pet) }}>Edit</Button>
+                                <Button className="btn_actions" onClick={ () => { onShowDetailsModal(pet) }}>Details</Button>
+                                <Button className="btn_actions btn_edit" onClick={ () => { onShowEditModal(pet) }}>Edit</Button>
                             </td>
                         </tr>)}
                     </tbody>
                 </Table>
-            </>
+            </React.Fragment>
         );
     }
 }

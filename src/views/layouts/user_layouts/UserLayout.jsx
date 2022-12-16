@@ -1,16 +1,12 @@
 /* REACT */
 import React, { Component } from 'react';
 
-/* PLUGINS */
-
 /* COMPONENTS */
 import NavBar from '../../user/dashboard/components/navBar';
 import PetList from '../../user/dashboard/petList';
 import AddPetModal from '../../user/modal/addPetModal';
 import EditPetModal from '../../user/modal/editPetModal';
 import DetailsPetModal from '../../user/modal/detailsPetModal';
-
-/* STYLES */
 
 class UserLayout extends Component {
     constructor(props) {
@@ -44,12 +40,6 @@ class UserLayout extends Component {
                 pet_name: pet.pet_name,
                 pet_type: pet.pet_type,
                 pet_likes: 0
-            }, 
-            edited_pet: {
-                id: pet.id,
-                pet_name: pet.pet_name,
-                pet_type: pet.pet_type,
-                pet_likes: 0
             }
         });
     }
@@ -69,11 +59,12 @@ class UserLayout extends Component {
     handleChangePetType = (pet) => {
         const { selected_pet } = this.state;
 
-        this.setState({  selected_pet: {
+        this.setState({  
+            selected_pet: {
                 ...selected_pet,
                 pet_type: pet.target.value
             }
-        })
+        });
     }
 
     handleLikePet = () =>{
@@ -83,13 +74,13 @@ class UserLayout extends Component {
                 ...selected_pet,
                 pet_likes: selected_pet.pet_likes + 1
             }
-        })
+        });
     }
 
     render() { 
-        const { display_add_modal, display_edit_modal, display_details_modal, selected_pet, selected_pet_type } = this.state
+        const { display_add_modal, display_edit_modal, display_details_modal, selected_pet, selected_pet_type } = this.state;
         return (
-            <>
+            <React.Fragment>
                 <NavBar 
                     onShowAddModal={this.handleShowAddModal}
                 />
@@ -114,9 +105,9 @@ class UserLayout extends Component {
                     onHandleHideDetailsModal={this.handleHideDetailsModal}
                     onLikePet={this.handleLikePet}
                 />
-            </>
+            </React.Fragment>
         );
     }
 }
- 
+
 export default UserLayout;

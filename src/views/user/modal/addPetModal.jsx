@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 
 /* REDUX */
 import { connect } from 'react-redux';
+
 class AddPetModal extends Component {
     constructor(props) {
     super(props);
@@ -29,11 +30,11 @@ class AddPetModal extends Component {
                     <Form>
                         <Form.Group className="mb-3">
                             <Form.Label>Pet Name</Form.Label>
-                            <Form.Control type="text" placeholder="Pet Name" onChange={(event) => {this.setState({...this.state, pet_name: event.target.value})}} value={this.state.pet_name}/>
+                            <Form.Control type="text" placeholder="Pet Name" onChange={(event) => { this.setState({ ...this.state, pet_name: event.target.value} )} } value={this.state.pet_name}/>
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Pet Type</Form.Label>
-                            <Form.Select onChange={(event) => {this.setState({...this.state, pet_type: event.target.value})}} value={this.state.pet_type}>
+                            <Form.Select onChange={ (event) => { this.setState({ ...this.state, pet_type: event.target.value }) } } value={ this.state.pet_type }>
                                 <option>Pig</option>
                                 <option>Cat</option>
                                 <option>Dog</option>

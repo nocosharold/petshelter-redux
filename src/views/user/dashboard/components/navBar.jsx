@@ -1,19 +1,17 @@
 /* REACT */
 import React, { Component } from 'react'
+
+/* PLUGINS */
 import { Container, Nav, Navbar, Button } from 'react-bootstrap'
 
-/* COMPONENTS */
-
-/* REDUX */
-// import { addPet } from '../../../../_actions/pet_list.action';
-
+/* STYLES */
 import './navBar.scss';
 
 class NavBar extends Component {
     render() { 
         const { onShowAddModal } = this.props;
         return (
-            <>
+            <React.Fragment>
                 <Navbar>
                     <Container>
                     <Navbar.Brand href="#home">PETSHELTER</Navbar.Brand>
@@ -26,7 +24,7 @@ class NavBar extends Component {
                     </Container>
                 </Navbar>
                 
-            </>
+            </React.Fragment>
             
         );
     }
