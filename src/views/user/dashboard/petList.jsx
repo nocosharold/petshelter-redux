@@ -1,5 +1,6 @@
 /* REACT */
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
 /* PLUGINS */
 import { Table, Button  } from 'react-bootstrap';
@@ -23,7 +24,8 @@ class PetList extends Component {
                             <td>{pet.pet_type}</td>
                             <td>
                                 <Button className="btn_actions" onClick={ () => { onShowDetailsModal(pet) }}>Details</Button>
-                                <Button className="btn_actions btn_edit" onClick={ () => { onShowEditModal(pet) }}>Edit</Button>
+                                <Link className="btn_actions btn_edit" to={`edit/${pet.id}`} onClick={ () => { onShowEditModal(pet) }}>Edit</Link>
+                                {/* <Button className="btn_actions btn_edit" onClick={ () => { onShowEditModal(pet) }}>Edit</Button> */}
                             </td>
                         </tr>)}
                     </tbody>

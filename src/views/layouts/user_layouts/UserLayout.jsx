@@ -4,8 +4,6 @@ import React, { Component } from 'react';
 /* COMPONENTS */
 import NavBar from '../../user/dashboard/components/navBar';
 import PetList from '../../user/dashboard/petList';
-import AddPetModal from '../../user/modal/addPetModal';
-import EditPetModal from '../../user/modal/editPetModal';
 import DetailsPetModal from '../../user/modal/detailsPetModal';
 
 class UserLayout extends Component {
@@ -22,14 +20,6 @@ class UserLayout extends Component {
                 pet_likes: 0
             },
         }
-    }
-
-    handleShowAddModal = () => {
-        this.setState({ display_add_modal: true });
-    }
-
-    handleHideAddModal = () => {
-        this.setState({ display_add_modal: false });
     }
 
     handleShowEditModal = (pet) => {
@@ -78,7 +68,7 @@ class UserLayout extends Component {
     }
 
     render() { 
-        const { display_add_modal, display_edit_modal, display_details_modal, selected_pet, selected_pet_type } = this.state;
+        const { display_details_modal, selected_pet, selected_pet_type } = this.state;
         return (
             <React.Fragment>
                 <NavBar 
@@ -87,16 +77,6 @@ class UserLayout extends Component {
                 <PetList 
                     onShowEditModal={this.handleShowEditModal}
                     onShowDetailsModal={this.handleShowDetailsModal}
-                />
-                <AddPetModal 
-                    showAddPetModalState={ display_add_modal }
-                    onHideAddModal={this.handleHideAddModal}
-                />
-                <EditPetModal 
-                    showEditPetModalState={ display_edit_modal }
-                    selectedPet={ selected_pet }
-                    onChangePetType={this.handleChangePetType}
-                    onHandleHideEditModal={this.handleHideEditModal}
                 />
                 <DetailsPetModal 
                     showDetailsPetModalState={ display_details_modal }

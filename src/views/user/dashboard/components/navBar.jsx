@@ -2,14 +2,13 @@
 import React, { Component } from 'react'
 
 /* PLUGINS */
-import { Container, Nav, Navbar, Button } from 'react-bootstrap'
+import { Container, Nav, Navbar } from 'react-bootstrap'
 
 /* STYLES */
 import './navBar.scss';
 
 class NavBar extends Component {
     render() { 
-        const { onShowAddModal } = this.props;
         return (
             <React.Fragment>
                 <Navbar>
@@ -19,11 +18,10 @@ class NavBar extends Component {
                         <Nav.Link href="#home">Home</Nav.Link>
                         <Nav.Link href="#services">Services</Nav.Link>
                         <Nav.Link href="#events">Events</Nav.Link>
-                        <Button className="add_pet_btn" onClick={() => { onShowAddModal() }}>Add Pet</Button>
+                        <Nav.Link href="/add" className="add_pet_btn">Add Pet</Nav.Link>
                     </Nav>
                     </Container>
                 </Navbar>
-                
             </React.Fragment>
             
         );
